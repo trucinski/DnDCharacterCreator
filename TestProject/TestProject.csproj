@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{418A8B90-F374-470F-9F10-E75122E03AAA}</ProjectGuid>
+    <ProjectGuid>{BD71C778-3121-4ECD-985C-A3B49E7F63E5}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>DnDCharacterCreator</RootNamespace>
-    <AssemblyName>DnDCharacterCreator</AssemblyName>
+    <RootNamespace>TestProject</RootNamespace>
+    <AssemblyName>TestProject</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,19 +42,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Builders\CharacterDataBuilder.cs" />
-    <Compile Include="Constants.cs" />
-    <Compile Include="Data\CharacterData.cs" />
-    <Compile Include="Data\CharacterSampleNames.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Workers\CharacterModifiers.cs" />
-    <Compile Include="Workers\Display.cs" />
-    <Compile Include="Workers\Events.cs" />
-    <Compile Include="Workers\SaveCharacter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DnDCharacterCreator\DnDCharacterCreator.csproj">
+      <Project>{418a8b90-f374-470f-9f10-e75122e03aaa}</Project>
+      <Name>DnDCharacterCreator</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -7,14 +7,27 @@ using System.Threading.Tasks;
 
 namespace DnDCharacterCreator.Data
 {
-    class CharacterData 
+    public class CharacterData 
     {     
         public string CharClass { get; set; }
+        public string ClassArchetype { get; set; }
         public int Level { get; set; }
         public string Background { get; set; }
         public string Name { get; set; }
 
+        public string Sex { get; set; }
+        public int Height { get; set; }
+        public int Weight { get; set; }
+        public int CarryWeight { get; set; }
+        public string Size { get; set; }
+
+        public string EyeColor { get; set; }
+        public string SkinColor { get; set; }
+        public string HairColor { get; set; }
+
         public string Race { get; set; }
+        public string SubRace { get; set; }
+        public string HumanEthnicity { get; set; }
         public string Alignment { get; set; }
         public int Experience { get; set; }
 
@@ -39,6 +52,7 @@ namespace DnDCharacterCreator.Data
         public int MaxHitPoints { get; set; }
         public int CurrentHitPoints { get; set; }
         public int HitDieValue { get; set; }
+        public int MaxHitDieTotal { get; set; }
         public int CurrentHitDieTotal { get; set; }
 
         public int Inspiration { get; set; }
@@ -47,6 +61,5 @@ namespace DnDCharacterCreator.Data
 
         public int CreationStep { get; set; }
         public bool CreationComplete { get; set; }
-        
     }
 }

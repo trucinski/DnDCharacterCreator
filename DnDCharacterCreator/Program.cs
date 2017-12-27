@@ -18,6 +18,7 @@ namespace DnDCharacterCreator
         private static readonly CharacterModifiers _characterModifiers = new CharacterModifiers();
         private static readonly SaveCharacter _saveCharacter = new SaveCharacter();
         private static readonly CharacterDataBuilder _characterDataBuilder = new CharacterDataBuilder();
+        private static readonly CharacterSampleNames _characterSampleNames = new CharacterSampleNames();
         
 
         static void Main(string[] args)
@@ -39,118 +40,50 @@ namespace DnDCharacterCreator
                     Console.WriteLine(Constants.createSavePrompt);
                     fileName = Console.ReadLine() + Constants.createTxtFile;
 
+                    Console.Clear();
                     _display.CharacterDisplay(characterData);
 
-                    Console.WriteLine(Constants.startingRacePrompt);
-
-                    bool validStartingRace = false;
+                    bool creationComplete = false;
 
                     do
                     {
-                        string raceChoice = Console.ReadLine().ToLower();
-
-                        if (raceChoice.Equals(Constants.numericOneCheck) || raceChoice.Equals(Constants.dwarfRaceChoice))
+                        switch (characterData.CreationStep)
                         {
-                            characterData = _characterModifiers.CreateDwarfRace(characterData);
-                            characterData.CreationStep += 1;
-                            Console.Clear();
-                            _display.CharacterDisplay(characterData);
-                            validStartingRace = true;
-                            break;
-
+                            case 0:
+                                _characterModifiers.CreationStepRace(characterData);
+                                _saveCharacter.SaveCharacterData(fileName, characterData);
+                                break;
+                            case 1:
+                                _characterModifiers.CreationStepClass(characterData);
+                                _saveCharacter.SaveCharacterData(fileName, characterData);
+                                break;
+                            case 2:
+                                _characterModifiers.CreationStepAbilityScores(characterData);
+                                _saveCharacter.SaveCharacterData(fileName, characterData);
+                                break;
+                            case 3:
+                                _characterModifiers.CreationStepSex(characterData);
+                                _saveCharacter.SaveCharacterData(fileName, characterData);
+                                break;
+                            case 4:
+                                _characterModifiers.CreationStepName(characterData);
+                                _saveCharacter.SaveCharacterData(fileName, characterData);
+                                break;
+                            case 5:
+                                _characterModifiers.CreationStepHeightandWeight(characterData);
+                                _saveCharacter.SaveCharacterData(fileName, characterData);
+                                break;
+                            default:
+                                characterData.CreationComplete = true;
+                                _saveCharacter.SaveCharacterData(fileName, characterData);
+                                creationComplete = true;
+                                break;
                         }
 
-                        if (raceChoice.Equals(Constants.numericTwoCheck) || raceChoice.Equals(Constants.elfRaceChoice))
-                        {
-                            characterData = _characterModifiers.CreateElfRace(characterData);
-                            characterData.CreationStep += 1;
-                            Console.Clear();
-                            _display.CharacterDisplay(characterData);
-                            validStartingRace = true;
-                            break;
-                        }
+                    } while (!creationComplete);
 
-                        if (raceChoice.Equals(Constants.numericThreeCheck) || raceChoice.Equals(Constants.halflingRaceChoice))
-                        {
-                            characterData = _characterModifiers.CreateHalflingRace(characterData);
-                            characterData.CreationStep += 1;
-                            Console.Clear();
-                            _display.CharacterDisplay(characterData);
-                            validStartingRace = true;
-                            break;
-                        }
-
-                        if (raceChoice.Equals(Constants.numericFourCheck) || raceChoice.Equals(Constants.humanRaceChoice))
-                        {
-                            characterData = _characterModifiers.CreateHumanRace(characterData);
-                            characterData.CreationStep += 1;
-                            Console.Clear();
-                            _display.CharacterDisplay(characterData);
-                            validStartingRace = true;
-                            break;
-                        }
-
-                        if (raceChoice.Equals(Constants.numericFiveCheck) || raceChoice.Equals(Constants.dragonbornRaceChoice))
-                        {
-                            characterData = _characterModifiers.CreateDragonbornRace(characterData);
-                            characterData.CreationStep += 1;
-                            Console.Clear();
-                            _display.CharacterDisplay(characterData);
-                            validStartingRace = true;
-                            break;
-                        }
-
-                        if (raceChoice.Equals(Constants.numericSixCheck) || raceChoice.Equals(Constants.gnomeRaceChoice))
-                        {
-                            characterData = _characterModifiers.CreateGnomeRace(characterData);
-                            characterData.CreationStep += 1;
-                            Console.Clear();
-                            _display.CharacterDisplay(characterData);
-                            validStartingRace = true;
-                            break;
-                        }
-
-                        if (raceChoice.Equals(Constants.numericSevenCheck) || raceChoice.Equals(Constants.halfElfRaceChoice))
-                        {
-                            characterData = _characterModifiers.CreateHalfElfRace(characterData);
-                            characterData.CreationStep += 1;
-                            Console.Clear();
-                            _display.CharacterDisplay(characterData);
-                            validStartingRace = true;
-                            break;
-                        }
-
-                        if (raceChoice.Equals(Constants.numericEightCheck) || raceChoice.Equals(Constants.halfOrcRaceChoice))
-                        {
-                            characterData = _characterModifiers.CreateHalfOrcRace(characterData);
-                            characterData.CreationStep += 1;
-                            Console.Clear();
-                            _display.CharacterDisplay(characterData);
-                            validStartingRace = true;
-                            break;
-                        }
-
-                        if (raceChoice.Equals(Constants.numericNineCheck) || raceChoice.Equals(Constants.tieflingRaceChoice))
-                        {
-                            characterData = _characterModifiers.CreateTieflingRace(characterData);
-                            characterData.CreationStep += 1;
-                            Console.Clear();
-                            _display.CharacterDisplay(characterData);
-                            validStartingRace = true;
-                            break;
-                        }
-
-                        else
-                        {
-                            Console.WriteLine(Constants.errorInvalidRace);
-                        }
-
-                    } while (!validStartingRace);
-
-                    _saveCharacter.SaveCharacterData(fileName, characterData);
-
-                    string[] dataToReplace = File.ReadAllLines(fileName);
-                    foreach (var data in dataToReplace)
+                    string[] dataToPrint = File.ReadAllLines(fileName);
+                    foreach (var data in dataToPrint)
                     {
                         Console.WriteLine(data);
                     }
@@ -158,17 +91,17 @@ namespace DnDCharacterCreator
 
                 if (startingChoice.Equals(Constants.numericTwoCheck) || startingChoice.Contains(Constants.contCharCheck))
                 {
-                    Console.WriteLine("Currently not implemented.");
+                    Console.WriteLine(Constants.errorCurrentlyNotImplemented);
                 }
 
                 else
                 {
-                    Console.WriteLine("Invalid Choice.");
+                    Console.WriteLine(Constants.errorInvalidChoice);
                 }                
 
                 string contProgChoice = Console.ReadLine().ToLower();
 
-                if (contProgChoice.Equals("3"))
+                if (contProgChoice.Equals(Constants.numericThreeCheck))
                 {
                     contProg = false;
                 }

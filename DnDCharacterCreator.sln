@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2003
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnDCharacterCreator", "DnDCharacterCreator\DnDCharacterCreator.csproj", "{418A8B90-F374-470F-9F10-E75122E03AAA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "TestProject\TestProject.csproj", "{BD71C778-3121-4ECD-985C-A3B49E7F63E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{418A8B90-F374-470F-9F10-E75122E03AAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{418A8B90-F374-470F-9F10-E75122E03AAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{418A8B90-F374-470F-9F10-E75122E03AAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD71C778-3121-4ECD-985C-A3B49E7F63E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD71C778-3121-4ECD-985C-A3B49E7F63E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD71C778-3121-4ECD-985C-A3B49E7F63E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD71C778-3121-4ECD-985C-A3B49E7F63E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -7,14 +7,27 @@ using System.Threading.Tasks;
 
 namespace DnDCharacterCreator.Builders
 {
-    class CharacterDataBuilder
+    public class CharacterDataBuilder
     {
         private string _charClass;
+        private string _charClassArchetype;
         private int _charLevel;
         private string _charBackground;
         private string _charName;
 
+        private string _charSex;
+        private int _charHeight;
+        private int _charWeight;
+        private int _charCarryWeight;
+        private string _charSize;
+
+        private string _charEyeColor;
+        private string _charSkinColor;
+        private string _charHairColor;
+
         private string _charRace;
+        private string _charSubRace;
+        private string _charHumanEthnicity;
         private string _charAlignment;
         private int _charExperience;
 
@@ -38,6 +51,7 @@ namespace DnDCharacterCreator.Builders
         private int _charMaxHitPoints;
         private int _charCurrentHitPoints;
         private int _charHitDieValue;
+        private int _charMaxHitDieTotal;
         private int _charCurrentHitDieTotal;
 
         private int _charInspiration;
@@ -55,11 +69,24 @@ namespace DnDCharacterCreator.Builders
         public void SetDefaults()
         {
             _charClass = string.Empty;
+            _charClassArchetype = string.Empty;
             _charLevel = 1;
             _charBackground = string.Empty;
             _charName = string.Empty;
 
+            _charSex = string.Empty;
+            _charHeight = 0;
+            _charWeight = 0;
+            _charCarryWeight = 0;
+            _charSize = string.Empty;
+
+            _charEyeColor = string.Empty;
+            _charSkinColor = string.Empty;
+            _charHairColor = string.Empty;
+
             _charRace = string.Empty;
+            _charSubRace = string.Empty;
+            _charHumanEthnicity = string.Empty;
             _charAlignment = string.Empty;
             _charExperience = 0;
 
@@ -84,6 +111,7 @@ namespace DnDCharacterCreator.Builders
             _charMaxHitPoints = 0;
             _charCurrentHitPoints = 0;
             _charHitDieValue = 0;
+            _charMaxHitDieTotal = 0;
             _charCurrentHitDieTotal = 0;
 
             _charInspiration = 0;
@@ -95,9 +123,15 @@ namespace DnDCharacterCreator.Builders
 
         }
 
-        public CharacterDataBuilder WithName(string charName)
+        public CharacterDataBuilder WithClass(string charClass)
         {
-            _charName = charName;
+            _charClass = charClass;
+            return this;
+        }
+
+        public CharacterDataBuilder WithClassArchetype(string charClassArchetype)
+        {
+            _charClassArchetype = charClassArchetype;
             return this;
         }
 
@@ -113,15 +147,63 @@ namespace DnDCharacterCreator.Builders
             return this;
         }
 
-        public CharacterDataBuilder WithClass(string charClass)
+        public CharacterDataBuilder WithName(string charName)
         {
-            _charClass = charClass;
+            _charName = charName;
+            return this;
+        }
+
+        public CharacterDataBuilder WithHeight(int charHeight)
+        {
+            _charHeight = charHeight;
+            return this;
+        }
+
+        public CharacterDataBuilder WithWeight(int charWeight)
+        {
+            _charWeight = charWeight;
+            return this;
+        }
+
+        public CharacterDataBuilder WithCarryWeight(int charCarryWeight)
+        {
+            _charCarryWeight = charCarryWeight;
+            return this;
+        }
+
+        public CharacterDataBuilder WithEyeColor(string charEyeColor)
+        {
+            _charEyeColor = charEyeColor;
+            return this;
+        }
+
+        public CharacterDataBuilder WithSkinColor(string charSkinColor)
+        {
+            _charSkinColor = charSkinColor;
+            return this;
+        }
+
+        public CharacterDataBuilder WithHairColor(string charHairColor)
+        {
+            _charHairColor = charHairColor;
             return this;
         }
 
         public CharacterDataBuilder WithRace(string charRace)
         {
             _charRace = charRace;
+            return this;
+        }
+
+        public CharacterDataBuilder WithSubRace(string charSubRace)
+        {
+            _charSubRace = charSubRace;
+            return this;
+        }
+
+        public CharacterDataBuilder WithHumanEthnicity(string charHumanEthnicity)
+        {
+            _charHumanEthnicity = charHumanEthnicity;
             return this;
         }
 
@@ -173,6 +255,42 @@ namespace DnDCharacterCreator.Builders
             return this;
         }
 
+        public CharacterDataBuilder WithStrengthMod(int charStrengthMod)
+        {
+            _charStrengthMod = charStrengthMod;
+            return this;
+        }
+
+        public CharacterDataBuilder WithDexterityMod(int charDexterityMod)
+        {
+            _charDexterityMod = charDexterityMod;
+            return this;
+        }
+
+        public CharacterDataBuilder WithConstitutionMod(int charConstitutionMod)
+        {
+            _charConstitutionMod = charConstitutionMod;
+            return this;
+        }
+
+        public CharacterDataBuilder WithIntelligenceMod(int CharIntelligenceMod)
+        {
+            _charIntelligenceMod = CharIntelligenceMod;
+            return this;
+        }
+
+        public CharacterDataBuilder WithWisdomMod(int charWisdomMod)
+        {
+            _charWisdomMod = charWisdomMod;
+            return this;
+        }
+
+        public CharacterDataBuilder WithCharismaMod(int charCharismaMod)
+        {
+            _charCharismaMod = charCharismaMod;
+            return this;
+        }
+
         public CharacterDataBuilder WithSpeed(int charSpeed)
         {
             _charSpeed = charSpeed;
@@ -191,18 +309,6 @@ namespace DnDCharacterCreator.Builders
             return this;
         }
 
-        public CharacterDataBuilder WithCreationStep(int charCreationStep)
-        {
-            _charCreationStep = charCreationStep;
-            return this;
-        }
-
-        public CharacterDataBuilder WithCreationComplete(bool charCreationComplete)
-        {
-            _charCreationComplete = charCreationComplete;
-            return this;
-        }
-
         public CharacterDataBuilder WithMaxHitPoints(int charMaxHitPoints)
         {
             _charMaxHitPoints = charMaxHitPoints;
@@ -218,6 +324,12 @@ namespace DnDCharacterCreator.Builders
         public CharacterDataBuilder WithHitDieValue(int charHitDieValue)
         {
             _charHitDieValue = charHitDieValue;
+            return this;
+        }
+
+        public CharacterDataBuilder WithMaxHitDieTotal(int charMaxHitDieTotal)
+        {
+            _charMaxHitDieTotal = charMaxHitDieTotal;
             return this;
         }
 
@@ -245,15 +357,48 @@ namespace DnDCharacterCreator.Builders
             return this;
         }
 
+        public CharacterDataBuilder WithSex(string charSex)
+        {
+            _charSex = charSex;
+            return this;
+        }
+
+        public CharacterDataBuilder WithSize(string charSize)
+        {
+            _charSize = charSize;
+            return this;
+        }
+
+        public CharacterDataBuilder WithCreationStep(int charCreationStep)
+        {
+            _charCreationStep = charCreationStep;
+            return this;
+        }
+
+        public CharacterDataBuilder WithCreationComplete(bool charCreationComplete)
+        {
+            _charCreationComplete = charCreationComplete;
+            return this;
+        }
+
         public CharacterData Build()
         {
             CharacterData characterData = new CharacterData
             {
                 CharClass = _charClass,
+                ClassArchetype = _charClassArchetype,
                 Level = _charLevel,
                 Background = _charBackground,
                 Name = _charName,
+                Height = _charHeight,
+                Weight = _charWeight,
+                CarryWeight = _charCarryWeight,
+                EyeColor = _charEyeColor,
+                SkinColor = _charSkinColor,
+                HairColor = _charHairColor,
                 Race = _charRace,
+                SubRace = _charSubRace,
+                HumanEthnicity = _charHumanEthnicity,
                 Alignment = _charAlignment,
                 Experience = _charExperience,
                 Strength = _charStrength,
@@ -274,12 +419,15 @@ namespace DnDCharacterCreator.Builders
                 MaxHitPoints = _charMaxHitPoints,
                 CurrentHitPoints = _charCurrentHitPoints,
                 HitDieValue = _charHitDieValue,
+                MaxHitDieTotal = _charMaxHitDieTotal,
                 CurrentHitDieTotal = _charCurrentHitDieTotal,
                 Inspiration = _charInspiration,
                 ProficiencyBonus = _charProficiencyBonus,
                 Perception = _charPerception,
+                Sex = _charSex,
+                Size = _charSize,
                 CreationStep = _charCreationStep,
-                CreationComplete = _charCreationComplete
+                CreationComplete = _charCreationComplete,
             };
 
             return characterData;
